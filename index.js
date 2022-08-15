@@ -26,6 +26,10 @@ const kauppiasScript = async (id, page) => {
 }
 
 const main = async () => {
+  if (!USERNAME || !PASS || !GUARD) {
+    console.log('Missing arguments')
+    return
+  }
   console.log('Starting kauppiasscript!')
   const browser = await puppeteer.launch()
   const page1 = await browser.newPage()
