@@ -11,7 +11,7 @@
 
 ## How to use
 
-1.  Customize the code to fit your needs.
+1.  Customize the script to fit your needs.
 2.  Run: `GUARD=FOO123 node index.js`, where GUARD is your Steam guard code.
 
 ## Customizing the script

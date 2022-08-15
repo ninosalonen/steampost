@@ -7,16 +7,22 @@ const PASS = process.env.PASS
 const GUARD = process.env.GUARD
 
 // CHANGE THE COMMENT HERE!!!
-const COMMENT = 'My message to Steam groups!'
+const COMMENT = 'MY MESSAGE TO STEAM GROUPS'
 
 // CHANGE THE POSTING INTERVAL HERE!!!
 const MINUTES = 30
 
 const kauppiasScript = async (id, page) => {
-  await page.waitForTimeout(6000)
-  await page.type(`#commentthread_Clan_${id}_textarea`, COMMENT)
-  await page.click(`#commentthread_Clan_${id}_submit`)
-  console.log(`Successfully posted on ${id}`)
+  try {
+    await page.waitForTimeout(6000)
+    await page.type(`#commentthread_Clan_${id}_textarea`, COMMENT)
+    await page.click(`#commentthread_Clan_${id}_submit`)
+    console.log(`Successfully posted on ${id}`)
+  } catch (e) {
+    console.log(
+      `Something went wrong when posting to ${id}, please try again :/`
+    )
+  }
 }
 
 const main = async () => {
@@ -25,19 +31,34 @@ const main = async () => {
   const page1 = await browser.newPage()
   await page1.goto('https://steamcommunity.com/login/')
 
-  console.log(`Logging in ${USERNAME}...`)
-  await page1.type('#input_username', USERNAME)
-  await page1.type('#input_password', PASS)
-  await page1.click('#login_btn_signin > button')
-  await page1.waitForTimeout(6000)
-  const submitElem = await page1.$(
-    '#login_twofactorauth_buttonset_entercode > div.auth_button.leftbtn'
-  )
-  await page1.click('#rejectAllButton')
-  await page1.type('#twofactorcode_entry', GUARD)
-  await submitElem.click()
+  try {
+    console.log(`Logging in ${USERNAME}...`)
+    await page1.type('#input_username', USERNAME)
+    await page1.type('#input_password', PASS)
+    await page1.click('#login_btn_signin > button')
+    await page1.waitForTimeout(6000)
+    const submitElem = await page1.$(
+      '#login_twofactorauth_buttonset_entercode > div.auth_button.leftbtn'
+    )
+    await page1.click('#rejectAllButton')
+    await page1.type('#twofactorcode_entry', GUARD)
+    await submitElem.click()
+  } catch (e) {
+    console.log(
+      'Something went wrong logging you in, please check your USERNAME and PASS.'
+    )
+    await browser.close()
+    return
+  }
 
-  await page1.waitForNavigation()
+  try {
+    await page1.waitForNavigation()
+  } catch (e) {
+    console.log('Your GUARD was probably incorrent, please try again.')
+    await browser.close()
+    return
+  }
+
   console.log('Opening new tabs and Steam groups...')
   await page1.goto('https://steamcommunity.com/groups/tradecenter2016')
 
