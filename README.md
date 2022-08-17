@@ -21,3 +21,13 @@
 - `message` is what you would like to post.
 - `groups` holds the list of groups to post to.
   - You need to be a member of these groups!
+
+## Troubleshooting
+
+### Error: Failed to launch the browser process
+Change `const browser = await puppeteer.launch()` to point at a specific location where chromium is installed:
+```
+const browser = await puppeteer.launch({
+  executablePath: '/usr/bin/chromium-browser'
+})
+```
