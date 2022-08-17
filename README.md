@@ -8,7 +8,11 @@
 
 1. `git clone https://github.com/ninosalonen/steampost`
 2. `npm install` in the root
-3. `.env` file needed in the root with Steam credentials: STEAM_USER, STEAM_PASS AND STEAM_GUARD
+
+## Required env variables
+- STEAM_USER (steam username)
+- STEAM_PASS (steam password)
+- STEAM_GUARD (steam guard code)
 
 ## How to use
 
