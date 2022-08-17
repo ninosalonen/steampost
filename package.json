@@ -1,7 +1,7 @@
 {
   "name": "steampost",
   "version": "1.0.0",
-  "description": "A script for posting a message to steam groups",
+  "description": "A script for posting a message to steam groups. Used for trading purposes",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -11,7 +11,7 @@ const main = async () => {
   if (!parseCfg(cfg, USERNAME, PASS, GUARD)) {
     return
   }
-  console.log('Starting steampost!')
+  console.log('Starting Steampost!')
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   await page.goto('https://steamcommunity.com/login/')
@@ -61,8 +61,8 @@ const main = async () => {
         const id = await groupPage.evaluate((el) => el.innerHTML, idElement)
         await groupPage.goto(group)
         await groupPage.waitForNavigation
-        await page.type(`#commentthread_Clan_${id}_textarea`, cfg.message)
-        await page.click(`#commentthread_Clan_${id}_submit`)
+        await groupPage.type(`#commentthread_Clan_${id}_textarea`, cfg.message)
+        await groupPage.click(`#commentthread_Clan_${id}_submit`)
         console.log(`Successfully posted on ${groupName}!`)
         await groupPage.close()
       } catch (e) {
