@@ -17,7 +17,7 @@
 ## How to use
 
 1.  Customize the config.json file to fit your needs.
-2.  Run: `node index.js`, where GUARD is your Steam guard code.
+2.  Run: `node index.js`
 
 ## Customizing config.json
 
