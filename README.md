@@ -8,12 +8,12 @@
 
 1. `git clone https://github.com/ninosalonen/steampost`
 2. `npm install` in the root
-3. `.env` file needed in the root with Steam credentials: STEAM_USER and STEAM_PASS
+3. `.env` file needed in the root with Steam credentials: STEAM_USER, STEAM_PASS AND STEAM_GUARD
 
 ## How to use
 
 1.  Customize the config.json file to fit your needs.
-2.  Run: `GUARD=FOO12 node index.js`, where GUARD is your Steam guard code.
+2.  Run: `node index.js`, where GUARD is your Steam guard code.
 
 ## Customizing config.json
 
