@@ -22,12 +22,11 @@ const main = async () => {
     await page.type('#input_password', PASS)
     await page.click('#login_btn_signin > button')
     await page.waitForTimeout(6000)
-    const submitElem = await page.$(
-      '#login_twofactorauth_buttonset_entercode > div.auth_button.leftbtn'
-    )
     await page.click('#rejectAllButton')
     await page.type('#twofactorcode_entry', GUARD)
-    await submitElem.click()
+    await page.click(
+      '#login_twofactorauth_buttonset_entercode > div.auth_button.leftbtn'
+    )
   } catch (e) {
     console.log(
       'Something went wrong when logging you in, please check your USERNAME and PASS.'
