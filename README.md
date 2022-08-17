@@ -6,8 +6,9 @@
 
 ## Installation
 
-1. `npm install` in the root
-2. `.env` file needed in the root with Steam credentials: USERNAME and PASS
+1. `git clone https://github.com/ninosalonen/steampost`
+2. `npm install` in the root
+3. `.env` file needed in the root with Steam credentials: USERNAME and PASS
 
 ## How to use
 
