@@ -5,7 +5,7 @@ const { delay, parseCfg } = require('./helpers')
 
 const USERNAME = process.env.STEAM_USER
 const PASS = process.env.STEAM_PASS
-const GUARD = process.env.GUARD
+const GUARD = process.env.STEAM_GUARD
 
 const main = async () => {
   if (!parseCfg(cfg, USERNAME, PASS, GUARD)) {
