@@ -25,7 +25,7 @@
 ## Troubleshooting
 
 ### Error: Failed to launch the browser process
-Change `const browser = await puppeteer.launch()` to point at a specific location where chromium is installed:
+Change `const browser = await puppeteer.launch()` in index.js to point at a specific location where chromium is installed:
 ```
 const browser = await puppeteer.launch({
   executablePath: '/usr/bin/chromium-browser'
