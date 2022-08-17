@@ -3,8 +3,8 @@ const cfg = require('./config.json')
 const puppeteer = require('puppeteer')
 const { delay, parseCfg } = require('./helpers')
 
-const USERNAME = process.env.USERNAME
-const PASS = process.env.PASS
+const USERNAME = process.env.STEAM_USER
+const PASS = process.env.STEAM_PASS
 const GUARD = process.env.GUARD
 
 const main = async () => {
