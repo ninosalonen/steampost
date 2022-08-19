@@ -50,6 +50,7 @@ const main = async () => {
     groups.forEach(async (group) => {
       const groupName = group.split('/').pop() || group
       console.log(`Posting to group ${groupName}...`)
+
       try {
         const groupPage = await browser.newPage()
         await groupPage.goto(`${group}/memberslistxml/?xml=1`)
@@ -68,6 +69,8 @@ const main = async () => {
         console.log(
           `Something went wrong while posting to group ${groupName} :/`
         )
+        await browser.close()
+        throw new Error('Unable to post, try restarting.')
       }
     })
     await delay(cfg.minutes)
