@@ -6,6 +6,10 @@ const parseCfg = (cfg, USERNAME, PASS, GUARD) => {
     console.log('Missing env variables')
     return false
   }
+  if (GUARD.length != 5) {
+    console.log('The length of your STEAM_GUARD was wrong, should be 5')
+    return false
+  }
   if (!cfg.minutes || !cfg.groups || !cfg.message) {
     console.log('Please provide a valid cfg file')
     return false

@@ -1,7 +1,5 @@
 {
   "minutes": 30,
   "message": "MY MESSAGE HERE",
-  "groups": [
-    "https://steamcommunity.com/groups/foobar"
-  ]
+  "groups": ["https://steamcommunity.com/groups/foobar"]
 }

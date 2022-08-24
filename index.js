@@ -14,20 +14,31 @@ const main = async () => {
   console.log('Starting Steampost!')
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
-  await page.goto('https://steamcommunity.com/login/')
+  await page.goto('https://store.steampowered.com/login/')
 
   try {
     console.log(`Logging in ${USERNAME}...`)
-    await page.type('#input_username', USERNAME)
-    await page.type('#input_password', PASS)
-    await page.click('#login_btn_signin > button')
-    await page.waitForTimeout(6000)
-    await page.click('#rejectAllButton')
-    await page.type('#twofactorcode_entry', GUARD)
-    await page.click(
-      '#login_twofactorauth_buttonset_entercode > div.auth_button.leftbtn'
+    await page.type(
+      '#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > div > form > div:nth-child(1) > input',
+      USERNAME
     )
-  } catch (e) {
+    await page.type(
+      '#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > div > form > div:nth-child(2) > input',
+      PASS
+    )
+    await page.click(
+      '#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > div > form > div.newlogindialog_SignInButtonContainer_14fsn > button'
+    )
+    await page.waitForTimeout(6000)
+    for (let i = 0; i < 5; i++) {
+      await page.type(
+        `#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > form > div > div.newlogindialog_FlexCol_1mhmm.newlogindialog_AlignItemsCenter_30P8x > div > input[type=text]:nth-child(${
+          i + 1
+        })`,
+        GUARD[i]
+      )
+    }
+  } catch {
     console.log(
       'Something went wrong when logging you in, please check your USERNAME and PASS.'
     )
@@ -37,13 +48,12 @@ const main = async () => {
 
   try {
     await page.waitForNavigation()
-  } catch (e) {
+  } catch {
     console.log('Your GUARD was probably incorrent, please try again.')
     await browser.close()
     return
   }
   console.log('Successfully logged in!')
-
   const { groups } = cfg
 
   while (true) {
@@ -65,7 +75,7 @@ const main = async () => {
         await groupPage.click(`#commentthread_Clan_${id}_submit`)
         console.log(`Successfully posted on ${groupName}!`)
         await groupPage.close()
-      } catch (e) {
+      } catch {
         console.log(
           `Something went wrong while posting to group ${groupName} :/`
         )
