@@ -42,7 +42,7 @@
 - `message` is what you would like to post. 
 - `groups` holds the list of groups you would like to post to.
 
-2. Store the the required env variables in a `.env` file or use the CLI
+2. Store the the required env variables in a `.env` file or use the CLI.
 
 Using the CLI:
 - Define the env variables before `node index.js` when running the program
@@ -57,7 +57,7 @@ STEAM_PASS="password"
 STEAM_GUARD="12345"
 ```
 
-- Now you can run the program by typing `node index.js`
+- Now you can run the program by typing `node index.js`.
 
 
 ## Troubleshooting
