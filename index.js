@@ -55,7 +55,6 @@ const main = async () => {
   }
 
   console.log('Successfully logged in!')
-  console.log('Posting to groups...')
   const { groups } = cfg
 
   while (true) {
