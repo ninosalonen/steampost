@@ -1,7 +1,7 @@
 require('dotenv').config()
 const cfg = require('./config.json')
 const puppeteer = require('puppeteer')
-const { delay, parseCfg } = require('./helpers')
+const { delay, parseCfg, printTime } = require('./helpers')
 
 const USERNAME = process.env.STEAM_USER
 const PASS = process.env.STEAM_PASS
@@ -59,6 +59,7 @@ const main = async () => {
   const { groups } = cfg
 
   while (true) {
+    printTime()
     for (const group of groups) {
       const groupName = group.split('/').pop()
       try {

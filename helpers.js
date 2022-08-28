@@ -28,7 +28,18 @@ const parseCfg = (cfg, USERNAME, PASS, GUARD) => {
   return true
 }
 
+const printTime = () => {
+  const today = new Date()
+  const date =
+    today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear()
+  const time = today.getHours() + ':' + today.getMinutes()
+  const dateTime = time + ', ' + date
+
+  console.log(`Posting to groups at ${dateTime}`)
+}
+
 module.exports = {
   delay,
   parseCfg,
+  printTime,
 }
