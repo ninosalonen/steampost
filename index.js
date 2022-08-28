@@ -40,7 +40,7 @@ const main = async () => {
     }
   } catch {
     console.log(
-      'Something went wrong when logging you in, please check your USERNAME and PASS.'
+      'Something went wrong when logging in, please check your STEAM_USER and STEAM_PASS.'
     )
     await browser.close()
     return
@@ -49,7 +49,7 @@ const main = async () => {
   try {
     await page.waitForNavigation()
   } catch {
-    console.log('Your GUARD was probably incorrent, please try again.')
+    console.log('Your STEAM_GUARD was probably incorrent, please try again.')
     await browser.close()
     return
   }
