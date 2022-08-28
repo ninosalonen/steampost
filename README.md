@@ -43,12 +43,12 @@
 
 ```
 {
-	"minutes": 30,
-	"message": "Your message here",
-	"groups": [
-		"https://steamcommunity.com/groups/foo",
-		"https://steamcommunity.com/groups/bar"
-	]
+    "minutes": 30,
+    "message": "Your message here",
+    "groups": [
+        "https://steamcommunity.com/groups/foo",
+        "https://steamcommunity.com/groups/bar"
+    ]
 }
 ```
 
