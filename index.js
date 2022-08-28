@@ -29,7 +29,7 @@ const main = async () => {
     await page.click(
       '#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > div > form > div.newlogindialog_SignInButtonContainer_14fsn > button'
     )
-    await page.waitForTimeout(6000)
+    await page.waitForTimeout(5000) // Change for better
     for (let i = 0; i < 5; i++) {
       await page.type(
         `#responsive_page_template_content > div > div:nth-child(1) > div > div > div > div.newlogindialog_FormContainer_3jLIH > form > div > div.newlogindialog_FlexCol_1mhmm.newlogindialog_AlignItemsCenter_30P8x > div > input[type=text]:nth-child(${
@@ -53,36 +53,34 @@ const main = async () => {
     await browser.close()
     return
   }
+
   console.log('Successfully logged in!')
+  console.log('Posting to groups...')
   const { groups } = cfg
 
   while (true) {
-    groups.forEach(async (group) => {
-      const groupName = group.split('/').pop() || group
-      console.log(`Posting to group ${groupName}...`)
-
+    for (const group of groups) {
+      const groupName = group.split('/').pop()
       try {
-        const groupPage = await browser.newPage()
-        await groupPage.goto(`${group}/memberslistxml/?xml=1`)
-        await groupPage.waitForNavigation()
-        const idElement = await groupPage.$(
+        await page.goto(`${group}/memberslistxml/?xml=1`, {
+          waitUntil: 'domcontentloaded',
+        })
+        const idElement = await page.$(
           '#folder0 > div.opened > div:nth-child(2) > span:nth-child(2)'
         )
-        const id = await groupPage.evaluate((el) => el.innerHTML, idElement)
-        await groupPage.goto(group)
-        await groupPage.waitForNavigation()
-        await groupPage.type(`#commentthread_Clan_${id}_textarea`, cfg.message)
-        await groupPage.click(`#commentthread_Clan_${id}_submit`)
-        console.log(`Successfully posted on ${groupName}!`)
-        await groupPage.close()
-      } catch {
-        console.log(
-          `Something went wrong while posting to group ${groupName} :/`
+        const id = await page.evaluate(
+          (element) => element.innerHTML,
+          idElement
         )
-        await browser.close()
+        await page.goto(group, { waitUntil: 'domcontentloaded' })
+        await page.type(`#commentthread_Clan_${id}_textarea`, cfg.message)
+        await page.click(`#commentthread_Clan_${id}_submit`)
+        console.log(`Successfully posted to ${groupName}`)
+      } catch {
+        console.log(`Something went wrong while posting to group ${groupName}`)
         throw new Error('Unable to post, try restarting.')
       }
-    })
+    }
     await delay(cfg.minutes)
   }
 }

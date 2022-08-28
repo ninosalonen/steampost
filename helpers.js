@@ -28,5 +28,7 @@ const parseCfg = (cfg, USERNAME, PASS, GUARD) => {
   return true
 }
 
-exports.delay = delay
-exports.parseCfg = parseCfg
+module.exports = {
+  delay,
+  parseCfg,
+}
