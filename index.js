@@ -64,13 +64,13 @@ const main = async () => {
       try {
         const groupPage = await browser.newPage()
         await groupPage.goto(`${group}/memberslistxml/?xml=1`)
-        await groupPage.waitForNavigation
+        await groupPage.waitForNavigation()
         const idElement = await groupPage.$(
           '#folder0 > div.opened > div:nth-child(2) > span:nth-child(2)'
         )
         const id = await groupPage.evaluate((el) => el.innerHTML, idElement)
         await groupPage.goto(group)
-        await groupPage.waitForNavigation
+        await groupPage.waitForNavigation()
         await groupPage.type(`#commentthread_Clan_${id}_textarea`, cfg.message)
         await groupPage.click(`#commentthread_Clan_${id}_submit`)
         console.log(`Successfully posted on ${groupName}!`)
