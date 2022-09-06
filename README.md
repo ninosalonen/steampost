@@ -54,12 +54,12 @@ STEAM_GUARD="12345"
 
 Follow these steps if you want email notifications when Steampost goes down.
 
-1. You need to prove two more .env variables:
+1. You need to provide two more env variables:
 
 - `EMAIL`
 - `EMAIL_PASSWORD` (For gmail, this uses an app password, more at: https://support.google.com/accounts/answer/185833)
 
-2. Make sure you have the right `service` set in the `config.json` file.
+2. Make sure you have the right `service` set in the `config.json` file. For ex. `"service": "gmail"`
 
 ## Troubleshooting
 
