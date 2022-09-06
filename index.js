@@ -1,14 +1,16 @@
 require('dotenv').config()
 const cfg = require('./config.json')
 const puppeteer = require('puppeteer')
-const { delay, parseCfg, printTime } = require('./helpers')
+const { delay, parseCfg, printTime, sendEmail } = require('./helpers')
 
 const USERNAME = process.env.STEAM_USER
 const PASS = process.env.STEAM_PASS
 const GUARD = process.env.STEAM_GUARD
+const EMAIL = process.env.EMAIL
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD
 
 const main = async () => {
-  if (!parseCfg(cfg, USERNAME, PASS, GUARD)) {
+  if (!parseCfg()) {
     return
   }
   console.log('Starting Steampost!')
@@ -78,6 +80,9 @@ const main = async () => {
         console.log(`Successfully posted to ${groupName}`)
       } catch {
         console.log(`Something went wrong while posting to group ${groupName}`)
+        if (EMAIL && EMAIL_PASSWORD) {
+          sendEmail(EMAIL, EMAIL_PASSWORD)
+        }
         throw new Error('Unable to post, try restarting.')
       }
     }

@@ -1,7 +1,14 @@
+const nodemailer = require('nodemailer')
+const cfg = require('./config.json')
+
+const USERNAME = process.env.STEAM_USER
+const PASS = process.env.STEAM_PASS
+const GUARD = process.env.STEAM_GUARD
+
 const delay = (minutes) =>
   new Promise((res) => setTimeout(res, minutes * 60000))
 
-const parseCfg = (cfg, USERNAME, PASS, GUARD) => {
+const parseCfg = () => {
   if (!USERNAME || !PASS || !GUARD) {
     console.log('Missing env variables')
     return false
@@ -38,8 +45,34 @@ const printTime = () => {
   console.log(`Posting to groups at ${dateTime}`)
 }
 
+const sendEmail = (EMAIL, EMAIL_PASSWORD) => {
+  const transporter = nodemailer.createTransport({
+    service: cfg.service,
+    auth: {
+      user: EMAIL,
+      pass: EMAIL_PASSWORD,
+    },
+  })
+
+  const mailOptions = {
+    from: EMAIL,
+    to: EMAIL,
+    subject: 'Steampost is down!',
+    text: 'Steampost just went down, you need to restart it.',
+  }
+
+  transporter.sendMail(mailOptions, (error, info) => {
+    if (error) {
+      console.log(error)
+    } else {
+      console.log('Email sent: ' + info.response)
+    }
+  })
+}
+
 module.exports = {
   delay,
   parseCfg,
   printTime,
+  sendEmail,
 }
