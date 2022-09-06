@@ -34,7 +34,7 @@ const parseCfg = () => {
     )
     return false
   }
-  if(EMAIL && PASSWORD && cfg.service){
+  if(EMAIL && EMAIL_PASSWORD && cfg.service){
     console.log("You will receive an email if Steampost goes down, if your credentials are correct.");
   }
   return true
