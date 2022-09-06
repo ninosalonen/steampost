@@ -59,7 +59,7 @@ Follow these steps if you want email notifications when Steampost goes down.
 - `EMAIL`
 - `EMAIL_PASSWORD` (For gmail, this uses an app password, more at: https://support.google.com/accounts/answer/185833)
 
-2. Make sure you have the right `service` set in the `config.json` file. For ex. `"service": "gmail"`
+2. Make sure you have the right `service` set in the `config.json` file. For ex. `"service": "gmail"`.
 
 ## Troubleshooting
 
