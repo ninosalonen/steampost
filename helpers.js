@@ -4,6 +4,8 @@ const cfg = require('./config.json')
 const USERNAME = process.env.STEAM_USER
 const PASS = process.env.STEAM_PASS
 const GUARD = process.env.STEAM_GUARD
+const EMAIL = process.env.EMAIL
+const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD
 
 const delay = (minutes) =>
   new Promise((res) => setTimeout(res, minutes * 60000))
@@ -31,6 +33,9 @@ const parseCfg = () => {
       'Please put at least 1 group in the "groups" field at config.json'
     )
     return false
+  }
+  if(EMAIL && PASSWORD && cfg.service){
+    console.log("You will receive an email if Steampost goes down, if your credentials are correct.");
   }
   return true
 }
