@@ -50,7 +50,7 @@ const printTime = () => {
   console.log(`Posting to groups at ${dateTime}`)
 }
 
-const sendEmail = (EMAIL, EMAIL_PASSWORD) => {
+const sendEmail = async (EMAIL, EMAIL_PASSWORD) => {
   const transporter = nodemailer.createTransport({
     service: cfg.service,
     auth: {
@@ -66,13 +66,8 @@ const sendEmail = (EMAIL, EMAIL_PASSWORD) => {
     text: 'Steampost just went down, you need to restart it.',
   }
 
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error)
-    } else {
-      console.log('Email sent: ' + info.response)
-    }
-  })
+  const info = await transporter.sendMail(mailOptions)
+  console.log("Message sent", info.messageId)
 }
 
 module.exports = {
