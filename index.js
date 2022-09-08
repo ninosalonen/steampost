@@ -81,7 +81,7 @@ const main = async () => {
       } catch {
         console.log(`Something went wrong while posting to group ${groupName}`)
         if (EMAIL && EMAIL_PASSWORD) {
-          sendEmail(EMAIL, EMAIL_PASSWORD)
+          await sendEmail(EMAIL, EMAIL_PASSWORD)
         }
         throw new Error('Unable to post, try restarting.')
       }
